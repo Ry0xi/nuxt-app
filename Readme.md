@@ -3,5 +3,3 @@
 - VS CODE
 - node v14.17.6 (LTS)
 - npm v6.14.15
-- 
-- 
