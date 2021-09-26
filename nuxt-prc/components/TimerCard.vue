@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .timer-card {
   position: relative;
 
@@ -88,6 +88,24 @@ export default {
   border-radius: 16px;
   background-color: #1E1E1E;
   font-size: 16px;
+}
+
+.timer-card:hover {
+  .remain-time {
+    top: 0;
+    left: 8px;
+    transform: translate(0, 0);
+  }
+
+  .btn-stop {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .input-set-time {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .remain-time {
@@ -99,11 +117,6 @@ export default {
   font-size: 3em;
   
   transition: all 0.1s linear;
-}
-.timer-card:hover .remain-time {
-  top: 0;
-  left: 8px;
-  transform: translate(0, 0);
 }
 
 .btn-stop {
@@ -126,11 +139,6 @@ export default {
   background-color: rgba(33, 33, 33, 0.8);
 }
 
-.timer-card:hover .btn-stop {
-  visibility: visible;
-  opacity: 1;
-}
-
 .input-set-time {
   display: block;
   visibility: hidden;
@@ -145,10 +153,6 @@ export default {
   border-radius: 4px;
   border: 1px solid #ddd;
   transition: all 0.2s linear;
-}
-.timer-card:hover .input-set-time {
-  visibility: visible;
-  opacity: 1;
 }
 
 .status-lamp {
