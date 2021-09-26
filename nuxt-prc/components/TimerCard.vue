@@ -1,10 +1,10 @@
 <template>
   <div class="timer-card">
-    <div class="btn-stop" v-if="timerOn" @click="stopTimer">STOP</div>
     <div class="remain-time">{{formatTime}}</div>
-    <input type="number" class="input-set-time no-spin" placeholder="3000 -> 30:00" max="9959">
-    <div class="btn-start"></div>
-    <div class="status-lamp" :class="(timerOn) ? 'is-active' : ''"></div>
+    <input type="number" class="input-set-time no-spin" placeholder="3000 -> 30:00" :disabled="timerOn">
+    <div class="btn-start" v-if="!timerOn" @click="startTimer"></div>
+    <div class="btn-stop" v-if="timerOn" @click="stopTimer"></div>
+    <div class="status-lamp" :class="timerOn ? 'is-active' : ''"></div>
   </div>
 </template>
 
@@ -97,6 +97,11 @@ export default {
     transform: translate(0, 0);
   }
 
+  .btn-start {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .btn-stop {
     visibility: visible;
     opacity: 1;
@@ -115,28 +120,55 @@ export default {
   width: max-content;
   transform: translate(-50%, -50%);
   font-size: 3em;
+  user-select: none;
   
   transition: all 0.1s linear;
 }
 
+.btn-start,
 .btn-stop {
-  display: flex;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 16px;
-  align-items: center;
-  justify-content: center;
+  bottom: 7px;
+  right: 36px;
+  cursor: pointer;
 
   visibility: hidden;
   opacity: 0;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s linear;
+}
+
+.btn-start {
+  &::after {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 12px;
+    clip-path: polygon(0 0, 0% 100%, 100% 50%);
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .btn-stop {
-  background-color: rgba(33, 33, 33, 0.8);
+  &::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 12px;
+    border-left: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .input-set-time {
@@ -153,6 +185,10 @@ export default {
   border-radius: 4px;
   border: 1px solid #ddd;
   transition: all 0.2s linear;
+
+  &:disabled {
+    opacity: 0.4 !important;
+  }
 }
 
 .status-lamp {
