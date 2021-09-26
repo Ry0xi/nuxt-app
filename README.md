@@ -1,15 +1,3 @@
-開発環境
-- Windows10
-- WSL2(Ubuntu)
-- VS CODE
-
-技術スタック
-- Nuxt.js
-- WebSocket
-- node v14.17.6 (LTS)
-- npm v6.14.15
-- nvm
-
 ## アプリケーション
 ### いっしょにタイマー (Timer Together)
 ./nuxt-prc
@@ -42,3 +30,15 @@
 - ステータス(離席中・休憩中など)表示機能
 
 ※2021年9月27日現在・作成中
+
+#### 技術スタック
+- Nuxt.js
+- WebSocket
+- node v14.17.6 (LTS)
+- npm v6.14.15
+- nvm
+
+#### 開発環境
+- Windows10
+- WSL2(Ubuntu)
+- VS CODE
